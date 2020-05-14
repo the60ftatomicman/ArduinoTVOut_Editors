@@ -1,8 +1,6 @@
 
 param (
-    #[Parameter(Mandatory=$true)][string]$service = 'payroll',
-	[string]$filename = '.\alphabet.png',
-	[string]$logDir   = '.\output.txt',
+	[string]$filename = '.\alphabet.png'
 	[int]$letterH     = 6,
 	[int]$letterW     = 8,
 	[int]$starIdx     = 33
@@ -14,6 +12,17 @@ $colors = @{
 	'black'=@{eightBit="ff000000";twoBit="0";bcol="Black";fcol="White"};
 	'white'=@{eightBit="ffffffff";twoBit="1";bcol="White";fcol="Black"};
 }
+## {X,Y,0b00000000,0b0000000,etc}
+## How the notation works:
+## The Y value is a 1 to 1 relationship. If we have 32 pixel rows, we need
+## 32 "rows" in our array
+## The X however needs to be divided by 8.
+##
+## Look at the files under <where-ever you installed it>\Arduino\libraries\TVoutfonts\font*.cpp
+## Structure becomes pretty evident
+##
+## End index is determined by what you draw. It assumes you drew only what you wanted converted
+## and converts your image and associates to a character for each jump of the width and height. 
 $characters=@(
 # startIDX 0
 'space','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',

@@ -1,8 +1,6 @@
 
 param (
-    #[Parameter(Mandatory=$true)][string]$service = 'payroll',
-	[string]$filename = '.\test.bmp',
-	[string]$logDir   ='.\output.txt'
+	[string]$filename = '.\test.bmp'
 )
 cls
 Add-Type -Assembly System.Drawing
@@ -20,18 +18,6 @@ $colors = @{
 ##
 ##
 ##
-#$WindowSize        = $Host.UI.RawUI.WindowSize
-#$MaxWindow         = $Host.UI.RawUI.MaxWindowSize
-#$WindowSize.Width  = [Math]::Min($i.Width*5, $Host.UI.RawUI.BufferSize.Width)
-#$WindowSize.Height = $MaxWindow.Height
-#try{
-#	$Host.UI.RawUI.WindowSize = $WindowSize
-#}
-#catch [System.Management.Automation.SetValueInvocationException] {
-#	$Maxvalue = ($_.Exception.Message |Select-String "\d+").Matches[0].Value
-#	$WindowSize.Height = $Maxvalue
-#	$Host.UI.RawUI.WindowSize = $WindowSize
-#}
 #Test array should be opposite of (or just switch 0 and 1 on white vs black to se this pattern!):
 # 0xF8,0x00
 # 0xF8,0x00
@@ -44,9 +30,9 @@ $colors = @{
 # 0x05,0x40
 # 0x07,0xC0
 Write-Host "---------- Reading Bitmap ----------"
-$totalHex=[Math]::Ceiling([Math]::Ceiling($objBitmap.Width/8)*$objBitmap.Height)
-$objMemory=New-Object 'string[]' $totalHex
-$curHex=0
+$totalHex  = [Math]::Ceiling([Math]::Ceiling($objBitmap.Width/8)*$objBitmap.Height)
+$objMemory = New-Object 'string[]' $totalHex
+$curHex    = 0
 Write-Host "-- Expect ["$totalHex" ] memory maps"
 $curWord = "";
 for ($h=0; $h -lt $objBitmap.Height; $h++) {
