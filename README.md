@@ -3,7 +3,9 @@ I wrote these so I didn't have to get large java programs on my local computer, 
 
   - bitmapArduino.ps1 -- converts PNG and BMP's to the PROGMEM const unsigned char structure needed to show bitmaps
   - textmapArduino.ps1 -- converts PNG and BMP's to the PROGMEM const unsigned char structure needed to make fonts
-  - 
+  
+Email me at garb7477@gmail.com if you have questions!
+
 ### How it Works
 - Only 255,255,255 pure white pixels are detected for what pixels to display
 - bitmapArduino.ps1
